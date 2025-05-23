@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { ListItem } from "./ListItem";
 import { getData, setData } from "./util";
+import { FaPlus } from "react-icons/fa6";
 
 export type TodoItem = {
   desc: string;
@@ -63,12 +64,12 @@ export default function List() {
         }}
         onChange={(e) => setCurrentInput(e.target.value)}
       />
-      <button 
+      <button
         aria-label="Add todo button"
         disabled={!currentInput}
         onClick={() => addTodo(currentInput)}
-        className="bg-blue-500 text-white w-10 h-10 rounded-full hover:cursor-pointer">
-          +
+        className="flex items-center justify-center bg-blue-500 text-white w-11 h-10 rounded-full hover:cursor-pointer">
+        <FaPlus size={22} />
       </button>
     </div>
     <div>
