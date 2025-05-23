@@ -44,9 +44,14 @@ export default function List() {
 
   return (
     <>
-    <h3 className="mb-4 text-gray-500">Number of tasks: {todos.length}</h3>
+    <h2 
+      aria-live="polite"
+      className="mb-4 text-gray-500">
+        Number of tasks: {todos.length}
+    </h2>
     <div className="flex justify-between items-center mb-4 gap-2">
       <input 
+        aria-label="Add a new todo"
         type="text"
         placeholder="Add a new todo"
         className="border p-2 rounded-lg w-full"
@@ -59,6 +64,7 @@ export default function List() {
         onChange={(e) => setCurrentInput(e.target.value)}
       />
       <button 
+        aria-label="Add todo button"
         disabled={!currentInput}
         onClick={() => addTodo(currentInput)}
         className="bg-blue-500 text-white w-10 h-10 rounded-full hover:cursor-pointer">
