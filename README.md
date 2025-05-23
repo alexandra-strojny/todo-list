@@ -1,5 +1,6 @@
 # Todo App
 #### author: Alexandra Strojny
+#### created with Next.js
 
 Beginner React Portfolio
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TodoItem } from "./List";
 
 export const ListItem = ({
@@ -12,8 +12,8 @@ export const ListItem = ({
   onEdit: (newTodo:string) => void;
   onToggleTodo: () => void;
 }) => {
-  const [isEditing, setIsEditing] = React.useState(false);
-  const [currentInput, setCurrentInput] = React.useState(todo.desc);
+  const [isEditing, setIsEditing] = useState(false);
+  const [currentInput, setCurrentInput] = useState(todo.desc);
   return (
     <div className="flex items-center justify-between bg-gray-100 p-2 rounded-lg mb-2 gap-2">
       <div>

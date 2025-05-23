@@ -1,6 +1,7 @@
 'use client'
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ListItem } from "./ListItem";
+import { getData, setData } from "./util";
 
 export type TodoItem = {
   desc: string;
@@ -8,28 +9,37 @@ export type TodoItem = {
 }
 
 export default function List() {
-  const [todos, setTodos] = React.useState<TodoItem[]>([]);
-  const [currentInput, setCurrentInput] = React.useState<string>("");
+  const [todos, setTodos] = useState<TodoItem[]>([]);
+  const [currentInput, setCurrentInput] = useState<string>("");
+
+  useEffect(() => {
+    const todos = getData();
+    setTodos(todos);
+  }, []);
 
   const addTodo = (todo: string) => {
-    setTodos((prevTodos) => [...prevTodos, { desc: todo, completed: false }]);
+    const newTodos = [...todos, { desc: todo, completed: false }];
+    setTodos(newTodos);
+    setData(newTodos);
     setCurrentInput("");
   };
 
   const deleteTodo = (index: number) => {
-    setTodos((prevTodos) => prevTodos.filter((_, i) => i !== index));
+    const newTodos = todos.filter((_, i) => i !== index);
+    setTodos(newTodos);
+    setData(newTodos);
   }
 
   const editTodo = (index: number, newTodo: string) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo, i) => (i === index ? {desc: newTodo, completed: todo.completed} : todo))
-    );
+    const newTodos = todos.map((todo, i) => (i === index ? {desc: newTodo, completed: todo.completed} : todo));
+    setTodos(newTodos);
+    setData(newTodos);
   };
 
   const toggleTodo = (index: number) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo, i) => (i === index ? { ...todo, completed: !todo.completed } : todo))
-    );
+    const newTodos = todos.map((todo, i) => (i === index ? { ...todo, completed: !todo.completed } : todo));
+    setTodos(newTodos);
+    setData(newTodos);
   };
 
   return (
